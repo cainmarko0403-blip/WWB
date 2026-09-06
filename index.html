@@ -252,6 +252,8 @@
   .sbExport, .sbImport { flex:1; background:#0f1c24; border:1px solid #244a5a; color:#7fd0e6; border-radius:7px;
     padding:8px 9px; font-family:ui-monospace,monospace; font-size:11px; letter-spacing:.02em; cursor:pointer; text-transform:none; }
   .sbExport:active, .sbImport:active { background:#12303c; }
+  .sbExport:disabled { opacity:.4; cursor:default; }
+  .savedEmpty { font-size:11.5px; color:#6b7a89; line-height:1.55; font-style:italic; padding:8px 2px 2px; text-align:center; }
   .savedBackupNote { font-size:10.5px; color:#6b7a89; line-height:1.5; margin:0 2px 12px; font-style:italic; }
   .savedCard { background:#0b141b; border:1px solid #17212c; border-radius:10px; padding:11px 12px; margin-bottom:10px; }
   .savedCardHd { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:7px; }
@@ -3639,8 +3641,10 @@ function importSavedOrders(file, done){
 }
 
 function renderSavedSection(){
-  if (!state.saved.length) return "";
-  var cards=state.saved.slice().reverse().map(function(o){
+  var hasSaved = state.saved.length > 0;
+  var cards = "";
+  if (hasSaved) {
+    cards = state.saved.slice().reverse().map(function(o){
     var cnt=savedOrderCount(o), tot=savedOrderTotal(o);
     var L=linesFrom(o.qty, o.useBulk);
     var itemLines=L.slice().sort(function(a,b){
@@ -3665,13 +3669,20 @@ function renderSavedSection(){
         '<button class="sbDel" data-id="'+esc(o.id)+'">Delete</button>'+
       '</div>'+
     '</div>';
-  }).join("");
+    }).join("");
+  } else {
+    cards = '<div class="savedEmpty">No saved orders yet. Build an order and tap \u201cSave order\u201d to keep it here \u2014 or Restore from a backup file below.</div>';
+  }
+  var exportAttr = hasSaved ? "" : " disabled";
+  var noteText = hasSaved
+    ? "Backup downloads all your saved orders as a file you keep. Restore loads them back in (duplicates are skipped)."
+    : "Restore loads saved orders back in from a backup file. (Backup becomes available once you have an order saved.)";
   return '<div class="savedWrap"><div class="savedHd">Saved orders</div>'+
     '<div class="savedBackup">'+
-      '<button class="sbExport" title="Download all saved orders as a backup file">\u2193 Backup to file</button>'+
+      '<button class="sbExport"'+exportAttr+' title="Download all saved orders as a backup file">\u2193 Backup to file</button>'+
       '<button class="sbImport" title="Load saved orders from a backup file">\u2191 Restore from file</button>'+
     '</div>'+
-    '<div class="savedBackupNote" id="backupNote">Backup downloads all your saved orders as a file you keep. Restore loads them back in (duplicates are skipped).</div>'+
+    '<div class="savedBackupNote" id="backupNote">'+noteText+'</div>'+
     '<input type="file" id="importFile" accept="application/json,.json" style="display:none">'+
     cards+'</div>';
 }
