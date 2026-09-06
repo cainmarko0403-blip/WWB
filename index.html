@@ -248,6 +248,11 @@
   .savedHd { font-family:ui-monospace,monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
     color:#7fa9b8; margin:16px 2px 8px; display:flex; align-items:center; gap:7px; }
   .savedHd:before, .savedHd:after { content:""; flex:1; height:1px; background:#17212c; }
+  .savedBackup { display:flex; gap:7px; margin:0 2px 8px; }
+  .sbExport, .sbImport { flex:1; background:#0f1c24; border:1px solid #244a5a; color:#7fd0e6; border-radius:7px;
+    padding:8px 9px; font-family:ui-monospace,monospace; font-size:11px; letter-spacing:.02em; cursor:pointer; text-transform:none; }
+  .sbExport:active, .sbImport:active { background:#12303c; }
+  .savedBackupNote { font-size:10.5px; color:#6b7a89; line-height:1.5; margin:0 2px 12px; font-style:italic; }
   .savedCard { background:#0b141b; border:1px solid #17212c; border-radius:10px; padding:11px 12px; margin-bottom:10px; }
   .savedCardHd { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:7px; }
   .savedTitle { font-size:13.5px; color:#eaf2f8; font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -551,6 +556,8 @@
   html[data-theme="light"] .saveNewBtn { background:#dbe4ec; border-color:#a3b1bd; color:#2a3846; }
   html[data-theme="light"] .clearBtnSheet { background:#f4d9d0; border-color:#d49685; color:#8a4028; }
   html[data-theme="light"] .savedHd { color:#3f6f80; }
+  html[data-theme="light"] .sbExport, html[data-theme="light"] .sbImport { background:#dcecf3; border-color:#7fb0c4; color:#0a5266; }
+  html[data-theme="light"] .savedBackupNote { color:#5a6a78; }
   html[data-theme="light"] .savedHd:before, html[data-theme="light"] .savedHd:after { background:#bcc7d1; }
   html[data-theme="light"] .savedCard { background:#f4f7fa; border-color:#bcc7d1; }
   html[data-theme="light"] .savedTitle { color:#0c141c; }
@@ -3582,6 +3589,55 @@ function flashBtn(btn, msg){
   setTimeout(function(){ btn.innerHTML=orig; }, 1400);
 }
 
+// ---- backup: export / import saved orders to a file ----
+// Saved orders live in localStorage, which can be wiped (clearing browser data,
+// reinstalling, new device). These let you download all saved orders as a JSON
+// file and load them back later, so a history can't be permanently lost.
+function exportSavedOrders(){
+  if(!state.saved.length){ return; }
+  var payload = { type:"wwb-saved-orders", version:1, exported: Date.now(), orders: state.saved };
+  var text = JSON.stringify(payload, null, 2);
+  var blob = new Blob([text], {type:"application/json"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  var d = new Date();
+  var stamp = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  a.href = url;
+  a.download = "wwb-orders-"+stamp+".json";
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+}
+function importSavedOrders(file, done){
+  var reader = new FileReader();
+  reader.onload = function(){
+    var added=0, skipped=0, err=null;
+    try {
+      var data = JSON.parse(reader.result);
+      var orders = (data && data.orders) ? data.orders : (Array.isArray(data)?data:null);
+      if(!orders || !orders.length){ throw new Error("no orders found in file"); }
+      var haveIds = {}; state.saved.forEach(function(o){ haveIds[o.id]=true; });
+      orders.forEach(function(o){
+        // basic shape check so a wrong file can't corrupt state
+        if(!o || typeof o!=="object" || !o.qty){ skipped++; return; }
+        if(o.id && haveIds[o.id]){ skipped++; return; }   // already have it
+        state.saved.push({
+          id: o.id || ("o"+Date.now()+Math.floor(Math.random()*1000)),
+          name: (o.name||"Imported order"),
+          qty: o.qty,
+          useBulk: !!o.useBulk,
+          ts: o.ts || Date.now()
+        });
+        added++;
+      });
+      if(added){ saveState(); }
+    } catch(e){ err = e.message||"couldn't read that file"; }
+    if(done) done(added, skipped, err);
+  };
+  reader.onerror = function(){ if(done) done(0,0,"couldn't read that file"); };
+  reader.readAsText(file);
+}
+
 function renderSavedSection(){
   if (!state.saved.length) return "";
   var cards=state.saved.slice().reverse().map(function(o){
@@ -3610,7 +3666,14 @@ function renderSavedSection(){
       '</div>'+
     '</div>';
   }).join("");
-  return '<div class="savedWrap"><div class="savedHd">Saved orders</div>'+cards+'</div>';
+  return '<div class="savedWrap"><div class="savedHd">Saved orders</div>'+
+    '<div class="savedBackup">'+
+      '<button class="sbExport" title="Download all saved orders as a backup file">\u2193 Backup to file</button>'+
+      '<button class="sbImport" title="Load saved orders from a backup file">\u2191 Restore from file</button>'+
+    '</div>'+
+    '<div class="savedBackupNote" id="backupNote">Backup downloads all your saved orders as a file you keep. Restore loads them back in (duplicates are skipped).</div>'+
+    '<input type="file" id="importFile" accept="application/json,.json" style="display:none">'+
+    cards+'</div>';
 }
 
 function wireSavedButtons(){
@@ -3627,6 +3690,29 @@ function wireSavedButtons(){
   Array.prototype.forEach.call(sheet.querySelectorAll(".sbDel"), function(b){
     b.onclick=function(){ deleteSavedOrder(b.dataset.id); };
   });
+  var expBtn=sheet.querySelector(".sbExport");
+  if(expBtn) expBtn.onclick=function(){
+    exportSavedOrders();
+    var note=document.getElementById("backupNote");
+    if(note){ note.textContent="\u2713 Backup file downloaded. Keep it somewhere safe \u2014 you can Restore from it anytime."; }
+  };
+  var impBtn=sheet.querySelector(".sbImport");
+  var impFile=document.getElementById("importFile");
+  if(impBtn && impFile){
+    impBtn.onclick=function(){ impFile.click(); };
+    impFile.onchange=function(){
+      if(!impFile.files || !impFile.files[0]) return;
+      importSavedOrders(impFile.files[0], function(added, skipped, err){
+        var note=document.getElementById("backupNote");
+        if(note){
+          if(err){ note.textContent="\u26a0 Couldn\u2019t restore: "+err; }
+          else { note.textContent="\u2713 Restored "+added+(added===1?" order":" orders")+(skipped?(" ("+skipped+" already there, skipped)"):"")+"."; }
+        }
+        impFile.value="";
+        if(added){ renderSheet(); wireSavedButtons(); }
+      });
+    };
+  }
 }
 
 // Copy helper for saved-order buttons (different label restore than the main btn).
