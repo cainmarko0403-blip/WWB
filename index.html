@@ -197,6 +197,11 @@
   .copyBtn { width:100%; display:flex; align-items:center; justify-content:center; gap:8px; background:#12313d;
     border:1px solid #2b6070; color:#8fe3fb; font-family:ui-monospace,monospace; font-size:14px; font-weight:600;
     padding:13px; border-radius:11px; cursor:pointer; }
+  .waBtn { width:100%; display:flex; align-items:center; justify-content:center; gap:8px; background:#128c3f22;
+    border:1px solid #1f9d4e; color:#4fdd7f; font-family:ui-monospace,monospace; font-size:14px; font-weight:600;
+    padding:13px; border-radius:11px; cursor:pointer; margin-top:9px; }
+  .waBtn:active { background:#128c3f44; }
+  .waBtn:disabled { opacity:.4; cursor:default; }
   .disclaimer { font-size:10.5px; color:#5b7186; margin-top:10px; line-height:1.5; font-family:ui-monospace,monospace; }
 
   /* ---- editable cart lines inside the sheet ---- */
@@ -533,6 +538,7 @@
   html[data-theme="light"] .tLabel { color:#4a5a6a; }
   html[data-theme="light"] .tBig { color:#0c141c; }
   html[data-theme="light"] .copyBtn { background:#bfe2ee; border-color:#3f9cb8; color:#0a5266; }
+  html[data-theme="light"] .waBtn { background:#d6f2e0; border-color:#1f9d4e; color:#0d7a37; }
   html[data-theme="light"] .disclaimer { color:#5a6a78; }
 
   html[data-theme="light"] .groupHd { color:#26707f; }
@@ -3485,12 +3491,28 @@ function renderSheet(){
       '<div style="text-align:right"><span class="tLabel">Live BTC</span>'+
       '<span class="tBig" style="color:#f0a848;font-size:16px">'+(state.btcRate?fmtBtc(grand):"\u2026")+'</span></div></div>')+
     '<button class="copyBtn" id="copyBtn">\u2398 Copy USD order for CSR</button>'+
+    '<button class="waBtn" id="waBtn">\u27a4 Send order via WhatsApp</button>'+
     buildSaveArea()+
     '<div class="disclaimer">Copy block is USD only (what your CSR expects). Bulk \u201c10+\u201d tiers may apply per whole-order, not per line \u2014 confirm final pricing with the CSR.</div>'+
     savedHtml;
 
   document.getElementById("sheetClose").onclick=closeSheet;
   document.getElementById("copyBtn").onclick=function(){ copyText(man, this); };
+  (function(){
+    var wa=document.getElementById("waBtn");
+    if(!wa) return;
+    // no items in cart -> nothing to send
+    if(!L.length){ wa.disabled=true; wa.title="Add items to your cart first"; }
+    wa.onclick=function(){
+      if(!L.length) return;
+      var num="12136466934"; // destination WhatsApp number (intl format, no +)
+      var intro="Hi! I'd like to place the following order:\n\n";
+      var outro="\n\nWhen you get a chance, could you let me know the total and the current Bitcoin address to send payment to? Thank you!";
+      var msg=intro+man+outro;
+      var url="https://wa.me/"+num+"?text="+encodeURIComponent(msg);
+      window.open(url, "_blank");
+    };
+  })();
   wireSaveArea();
 
   // Wire the editable line steppers + expand toggle.
