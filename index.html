@@ -269,6 +269,7 @@
   .savedBtns { display:flex; gap:7px; flex-wrap:wrap; }
   .savedBtns button { font-family:ui-monospace,monospace; font-size:11.5px; padding:8px 11px; border-radius:8px; cursor:pointer; }
   .sbCopy { flex:1; min-width:120px; background:#12313d; border:1px solid #2b6070; color:#8fe3fb; font-weight:600; }
+  .sbAdd { background:#12291c; border:1px solid #2b6048; color:#7fe0a8; font-weight:600; }
   .sbLoad { background:#14202a; border:1px solid #22323f; color:#a9b8c5; }
   .sbDel { background:#1c1210; border:1px solid #3a201a; color:#b07a6a; }
 
@@ -574,6 +575,7 @@
   html[data-theme="light"] .savedTot { color:#0a5266; }
   html[data-theme="light"] .sbCopy { background:#bfe2ee; border-color:#3f9cb8; color:#0a5266; }
   html[data-theme="light"] .sbLoad { background:#dbe4ec; border-color:#a3b1bd; color:#2a3846; }
+  html[data-theme="light"] .sbAdd { background:#d6f2e0; border-color:#5cb583; color:#0d7a37; }
   html[data-theme="light"] .sbDel { background:#f4d9d0; border-color:#d49685; color:#8a4028; }
 </style>
 </head>
@@ -3367,6 +3369,21 @@ function loadSavedOrder(id){
   saveState();
   renderList(); renderBar(); renderSheet();
 }
+// Merge a saved order INTO the current cart (adds quantities together) rather
+// than replacing. Lets you combine multiple saved orders, or add one on top of
+// what's already in the cart.
+function addSavedOrderToCart(id){
+  var o=findSaved(id); if(!o) return;
+  for (var code in o.qty){
+    if (o.qty[code]>0){
+      state.qty[code]=(state.qty[code]||0)+o.qty[code];
+    }
+  }
+  // Merging breaks the 1:1 binding to a single saved order, so stop tracking one.
+  state.editingId=null;
+  saveState();
+  renderList(); renderBar(); renderSheet();
+}
 // Write the current cart back onto the saved order the cart is bound to.
 function updateSavedOrder(){
   var o=findSaved(state.editingId); if(!o) return;
@@ -3687,7 +3704,8 @@ function renderSavedSection(){
       '<div class="savedTot">'+totHtml+'</div>'+
       '<div class="savedBtns">'+
         '<button class="sbCopy" data-id="'+esc(o.id)+'">\u2398 Copy info for CSR</button>'+
-        '<button class="sbLoad" data-id="'+esc(o.id)+'">Load into cart</button>'+
+        '<button class="sbAdd" data-id="'+esc(o.id)+'">+ Add to cart</button>'+
+        '<button class="sbLoad" data-id="'+esc(o.id)+'">Load (replace)</button>'+
         '<button class="sbDel" data-id="'+esc(o.id)+'">Delete</button>'+
       '</div>'+
     '</div>';
@@ -3719,6 +3737,9 @@ function wireSavedButtons(){
   });
   Array.prototype.forEach.call(sheet.querySelectorAll(".sbLoad"), function(b){
     b.onclick=function(){ loadSavedOrder(b.dataset.id); };
+  });
+  Array.prototype.forEach.call(sheet.querySelectorAll(".sbAdd"), function(b){
+    b.onclick=function(){ addSavedOrderToCart(b.dataset.id); };
   });
   Array.prototype.forEach.call(sheet.querySelectorAll(".sbDel"), function(b){
     b.onclick=function(){ deleteSavedOrder(b.dataset.id); };
