@@ -197,11 +197,6 @@
   .copyBtn { width:100%; display:flex; align-items:center; justify-content:center; gap:8px; background:#12313d;
     border:1px solid #2b6070; color:#8fe3fb; font-family:ui-monospace,monospace; font-size:14px; font-weight:600;
     padding:13px; border-radius:11px; cursor:pointer; }
-  .waBtn { width:100%; display:flex; align-items:center; justify-content:center; gap:8px; background:#128c3f22;
-    border:1px solid #1f9d4e; color:#4fdd7f; font-family:ui-monospace,monospace; font-size:14px; font-weight:600;
-    padding:13px; border-radius:11px; cursor:pointer; margin-top:9px; }
-  .waBtn:active { background:#128c3f44; }
-  .waBtn:disabled { opacity:.4; cursor:default; }
   .disclaimer { font-size:10.5px; color:#5b7186; margin-top:10px; line-height:1.5; font-family:ui-monospace,monospace; }
 
   /* ---- editable cart lines inside the sheet ---- */
@@ -539,7 +534,6 @@
   html[data-theme="light"] .tLabel { color:#4a5a6a; }
   html[data-theme="light"] .tBig { color:#0c141c; }
   html[data-theme="light"] .copyBtn { background:#bfe2ee; border-color:#3f9cb8; color:#0a5266; }
-  html[data-theme="light"] .waBtn { background:#d6f2e0; border-color:#1f9d4e; color:#0d7a37; }
   html[data-theme="light"] .disclaimer { color:#5a6a78; }
 
   html[data-theme="light"] .groupHd { color:#26707f; }
@@ -639,26 +633,26 @@ var CATALOG = {
     ["TR10","Tirzepatide","10mg x10",50,45,""],
     ["TR15","Tirzepatide","15mg x10",60,55,""],
     ["TR20","Tirzepatide","20mg x10",70,65,""],
-    ["TR30","Tirzepatide","30mg x10",90,85,""],
-    ["TR40","Tirzepatide","40mg x10",110,105,""],
-    ["TR50","Tirzepatide","50mg x10",130,125,""],
-    ["TR60","Tirzepatide","60mg x10",150,145,""],
-    ["TR100","Tirzepatide","100mg x10",230,220,""],
+    ["TR30","Tirzepatide","30mg x10",90,80,""],
+    ["TR40","Tirzepatide","40mg x10",110,100,""],
+    ["TR50","Tirzepatide","50mg x10",130,120,""],
+    ["TR60","Tirzepatide","60mg x10",150,140,""],
+    ["TR100","Tirzepatide","100mg x10",220,210,""],
     ["SM2","Semaglutide","2mg x10",25,20,"GLP-1 agonist (metabolic/weight)"],
     ["SM5","Semaglutide","5mg x10",35,30,""],
     ["SM10","Semaglutide","10mg x10",50,45,""],
     ["SM15","Semaglutide","15mg x10",60,55,""],
     ["SM20","Semaglutide","20mg x10",70,65,""],
-    ["SM30","Semaglutide","30mg x10",90,85,""],
-    ["RT5","Retatrutide","5mg x10",55,50,"GLP-1/GIP/glucagon triple agonist"],
-    ["RT10","Retatrutide","10mg x10",80,75,""],
-    ["RT15","Retatrutide","15mg x10",100,95,""],
-    ["RT20","Retatrutide","20mg x10",120,115,""],
-    ["RT30","Retatrutide","30mg x10",160,155,""],
-    ["RT40","Retatrutide","40mg x10",200,190,""],
-    ["RT50","Retatrutide","50mg x10",240,230,""],
-    ["RT60","Retatrutide","60mg x10",280,270,""],
-    ["RT100","Retatrutide","100mg x10",420,410,""],
+    ["SM30","Semaglutide","30mg x10",90,80,""],
+    ["RT5","Retatrutide","5mg x10",50,45,"GLP-1/GIP/glucagon triple agonist"],
+    ["RT10","Retatrutide","10mg x10",75,70,""],
+    ["RT15","Retatrutide","15mg x10",90,85,""],
+    ["RT20","Retatrutide","20mg x10",105,100,""],
+    ["RT30","Retatrutide","30mg x10",135,125,""],
+    ["RT40","Retatrutide","40mg x10",165,155,""],
+    ["RT50","Retatrutide","50mg x10",195,185,""],
+    ["RT60","Retatrutide","60mg x10",225,215,""],
+    ["RT100","Retatrutide","100mg x10",345,335,""],
     ["BT5","TB-500 (TB4)","5mg x10",65,60,"Thymosin \u03b24 fragment (recovery peptide)"],
     ["BT10","TB-500 (TB4)","10mg x10",120,115,""],
     ["BT20","TB-500 (TB4)","20mg x10",200,190,""],
@@ -677,10 +671,10 @@ var CATALOG = {
     ["KL80","KLOW \u2014 GHK-Cu 50 + TB500 10 + BPC157 10 + KPV 10","80mg x10",190,180,""],
     ["KG60","GHK-Cu 50 + KPV 10 Blend","60mg x10",80,75,""],
     ["Ti17","Tesamorelin 11 + Ipamorelin 6 Blend","17mg x10",170,160,""],
-    ["CS10","Cagrilintide 5 + Semaglutide 5 Blend","10mg x10",110,105,""],
-    ["RC10","Retatrutide 5 + Cagrilintide 5 Blend","10mg x10",140,130,""],
+    ["CS10","Cagrilintide 5 + Semaglutide 5 Blend","10mg x10",100,95,""],
+    ["RC10","Retatrutide 5 + Cagrilintide 5 Blend","10mg x10",120,115,""],
     ["XS20","Selank 10 + Semax 10 Blend","20mg x10",90,85,""],
-    ["NM120","NAD+ 100 + MOTS-C 10 + 5-Amino-1MQ 10","120mg x10",140,130,""],
+    ["NM120","NAD+ 100 + MOTS-C 10 + 5-Amino-1MQ 10","120mg x10",130,120,""],
     ["CP10","CJC-1295 no DAC 5 + Ipa 5 Blend","10mg x10",90,85,""],
     ["CP20","CJC-1295 no DAC 10 + Ipa 10 Blend","20mg x10",160,150,""],
     ["CND5","CJC-1295 (no DAC)","5mg x10",70,65,""],
@@ -713,13 +707,13 @@ var CATALOG = {
     ["G610","GHRP-6 Acetate","10mg x10",50,45,""],
     ["GTT","Glutathione","1500mg x10",90,80,"Antioxidant"],
     ["GND2","Gonadorelin","2mg x10",35,30,"GnRH analog"],
-    ["H06","HGH 191AA (Somatropin)","6iu x10",55,null,"Recombinant growth hormone"],
-    ["H10","HGH 191AA (Somatropin)","10iu x10",70,null,""],
-    ["H12","HGH 191AA (Somatropin)","12iu x10",80,null,""],
-    ["H15","HGH 191AA (Somatropin)","15iu x10",100,null,""],
-    ["H24","HGH 191AA (Somatropin)","24iu x10",145,null,""],
-    ["H36","HGH 191AA (Somatropin)","36iu x10",190,null,"Your current H36"],
-    ["H50","HGH 191AA (Somatropin)","50iu x10",240,null,""],
+    ["H06","HGH 191AA (Somatropin)","6iu x10",50,45,"Recombinant growth hormone"],
+    ["H10","HGH 191AA (Somatropin)","10iu x10",65,60,""],
+    ["H12","HGH 191AA (Somatropin)","12iu x10",75,70,""],
+    ["H15","HGH 191AA (Somatropin)","15iu x10",95,90,""],
+    ["H24","HGH 191AA (Somatropin)","24iu x10",140,135,""],
+    ["H36","HGH 191AA (Somatropin)","36iu x10",180,175,"Your current H36"],
+    ["H50","HGH 191AA (Somatropin)","50iu x10",230,225,""],
     ["HU10","Humanin","10mg x10",180,170,""],
     ["G75","HMG","75IU x10",60,55,"Human menopausal gonadotropin"],
     ["HX2","Hexarelin","2mg x10",35,30,"GH secretagogue"],
@@ -739,7 +733,7 @@ var CATALOG = {
     ["KS10","Kisspeptin-10","10mg x10",70,65,""],
     ["KP5","KPV","5mg x10",40,35,"Anti-inflammatory tripeptide"],
     ["KP10","KPV","10mg x10",55,50,""],
-    ["KP30","KPV","30mg x10",150,140,""],
+    ["KP30","KPV","30mg x10",140,130,""],
     ["375","LL-37","5mg x10",90,85,"Antimicrobial peptide"],
     ["LL5","Liraglutide","5mg x10",80,75,"GLP-1 agonist"],
     ["LL10","Liraglutide","10mg x10",110,105,""],
@@ -755,7 +749,7 @@ var CATALOG = {
     ["NJ3100","NAD+","100mg x10",35,30,""],
     ["NJ250","NAD+","250mg x10",50,45,""],
     ["NJ500","NAD+","500mg x10",70,65,""],
-    ["NJ1000","NAD+","1000mg x10",120,110,""],
+    ["NJ1000","NAD+","1000mg x10",110,105,""],
     ["OT2","Oxytocin Acetate","2mg x10",35,30,""],
     ["OT5","Oxytocin Acetate","5mg x10",45,40,""],
     ["OT10","Oxytocin Acetate","10mg x10",60,55,""],
@@ -770,10 +764,11 @@ var CATALOG = {
     ["PIN20","Pinealon","20mg x10",90,85,""],
     ["PN5","PNC-27","5mg x10",85,80,""],
     ["PN10","PNC-27","10mg x10",150,140,""],
-    ["SUR10","Survodutide","10mg x10",210,200,"GLP-1/glucagon agonist"],
+    ["SUR10","Survodutide","10mg x10",200,190,"GLP-1/glucagon agonist"],
+    ["ER10","Eloralintide","10mg x10",350,340,"Amylin receptor agonist (appetite) \u2014 investigational"],
     ["NP810","SNAP-8","10mg x10",40,35,"Cosmetic peptide"],
     ["2S10","SS-31","10mg x10",80,75,"Mitochondrial peptide"],
-    ["2S50","SS-31","50mg x10",310,300,""],
+    ["2S50","SS-31","50mg x10",300,290,""],
     ["SK5","Selank","5mg x10",35,30,"Anxiolytic peptide"],
     ["SK10","Selank","10mg x10",55,50,""],
     ["SK30","Selank","30mg x10",120,110,""],
@@ -786,17 +781,17 @@ var CATALOG = {
     ["SMO10","Sermorelin Acetate","10mg x10",110,105,""],
     ["SMO15","Sermorelin Acetate","15mg x10",175,165,""],
     ["TSM2","Tesamorelin","2mg x10",50,45,"GHRH analog"],
-    ["TSM5","Tesamorelin","5mg x10",80,75,""],
-    ["TSM10","Tesamorelin","10mg x10",140,130,""],
-    ["TSM20","Tesamorelin","20mg x10",260,250,""],
+    ["TSM5","Tesamorelin","5mg x10",75,70,""],
+    ["TSM10","Tesamorelin","10mg x10",130,125,""],
+    ["TSM20","Tesamorelin","20mg x10",250,245,""],
     ["TY10","Thymalin","10mg x10",55,50,""],
     ["TA5","Thymosin Alpha-1","5mg x10",75,70,"Immune peptide"],
     ["TA10","Thymosin Alpha-1","10mg x10",130,125,""],
     ["VP5","VIP","5mg x10",80,75,"Vasoactive intestinal peptide"],
     ["VP10","VIP","10mg x10",140,130,""],
-    ["5AM","5-amino-1MQ","5mg x10",35,30,"NNMT inhibitor"],
-    ["10AM","5-amino-1MQ","10mg x10",55,50,""],
-    ["50AM","5-amino-1MQ","50mg x10",75,70,""],
+    ["5AM","5-amino-1MQ","5mg x10",30,25,"NNMT inhibitor"],
+    ["10AM","5-amino-1MQ","10mg x10",50,45,""],
+    ["50AM","5-amino-1MQ","50mg x10",70,65,""],
     ["AD5","Adamax","5mg x10",110,100,""],
     ["PRO20","Alprostadil","20MCG x5",110,100,"PGE1 (ED)"],
     ["AR50","AICAR","50mg x10",65,60,"AMPK activator"],
@@ -806,19 +801,19 @@ var CATALOG = {
     ["AP5","Adipotide","5mg x10",140,130,""],
     ["RA10","ARA-290","10mg x10",55,50,""],
     ["XT100","Botulinum toxin","100iu x10",140,130,"Neurotoxin \u2014 extreme caution",D],
-    ["BR20","Bronchogen","20mg x10",100,95,"Khavinson bioregulator"],
-    ["CA20","Cardiogen","20mg x10",100,95,"Khavinson bioregulator"],
-    ["COR20","Cortagen","20mg x10",100,95,"Khavinson bioregulator"],
-    ["CH20","Chonluten","20mg x10",100,95,"Khavinson bioregulator"],
-    ["CRY20","Crystagen","20mg x10",100,95,"Khavinson bioregulator"],
-    ["LAX20","Cartalax","20mg x10",100,95,"Khavinson bioregulator"],
-    ["Li20","Livagen","20mg x10",100,95,"Khavinson bioregulator"],
-    ["OV20","Ovagen","20mg x10",100,95,"Khavinson bioregulator"],
-    ["PA20","Pancragen","20mg x10",100,95,"Khavinson bioregulator"],
-    ["MAX20","Prostamax","20mg x10",100,95,"Khavinson bioregulator"],
-    ["VE20","Vesugen","20mg x10",100,95,"Khavinson bioregulator"],
-    ["VI20","Vilon","20mg x10",100,95,"Khavinson bioregulator"],
-    ["TG20","Testagen","20mg x10",100,95,"Khavinson bioregulator"],
+    ["BR20","Bronchogen","20mg x10",95,90,"Khavinson bioregulator"],
+    ["CA20","Cardiogen","20mg x10",95,90,"Khavinson bioregulator"],
+    ["COR20","Cortagen","20mg x10",95,90,"Khavinson bioregulator"],
+    ["CH20","Chonluten","20mg x10",95,90,"Khavinson bioregulator"],
+    ["CRY20","Crystagen","20mg x10",95,90,"Khavinson bioregulator"],
+    ["LAX20","Cartalax","20mg x10",95,90,"Khavinson bioregulator"],
+    ["Li20","Livagen","20mg x10",95,90,"Khavinson bioregulator"],
+    ["OV20","Ovagen","20mg x10",95,90,"Khavinson bioregulator"],
+    ["PA20","Pancragen","20mg x10",95,90,"Khavinson bioregulator"],
+    ["MAX20","Prostamax","20mg x10",95,90,"Khavinson bioregulator"],
+    ["VE20","Vesugen","20mg x10",95,90,"Khavinson bioregulator"],
+    ["VI20","Vilon","20mg x10",95,90,"Khavinson bioregulator"],
+    ["TG20","Testagen","20mg x10",95,90,"Khavinson bioregulator"],
     ["TER10","Teriparatide","10mg x10",180,170,"PTH analog (bone)"],
     ["B76","B7-33","6mg x10",180,170,"Relaxin analog"],
     ["TPR2","Triptorelin","2mg x10",40,35,"GnRH agonist"],
@@ -837,10 +832,11 @@ var CATALOG = {
     ["SLU5","SLU-PP-332","5mg x100 tab",40,38,""],
     ["SLU20","SLU-PP-332","20mg x100 tab",70,65,""],
     ["SL50","SLU-PP-332","50mg x100 tab",110,105,""],
-    ["SL100","SLU-PP-332","100mg x60 cap",145,140,""],
-    ["X10","Anavar (Oxandrolone)","10mg x100 tab",35,33,"Oral androgen"],
-    ["X25","Anavar (Oxandrolone)","25mg x100 tab",60,58,""],
-    ["X50","Anavar (Oxandrolone)","50mg x100 tab",85,83,""],
+    ["SL100","SLU-PP-332","100mg x60 cap",140,135,""],
+    ["S910","SLU-PP-915","10mg x100 tab",120,115,"Exercise-mimetic research (ERR agonist)"],
+    ["X10","Anavar (Oxandrolone)","10mg x100 tab",35,30,"Oral androgen"],
+    ["X25","Anavar (Oxandrolone)","25mg x100 tab",60,55,""],
+    ["X50","Anavar (Oxandrolone)","50mg x100 tab",85,80,""],
     ["OXP50","Anadrol (Oxymetholone)","50mg x100 tab",35,33,"Oral androgen"],
     ["D10","Dianabol","10mg x100 tab",20,18,"Oral androgen"],
     ["D20","Dianabol","20mg x100 tab",25,23,""],
@@ -915,9 +911,9 @@ var CATALOG = {
   ]},
   "Injectable Oils": { unit:"vial", note:"Single vial = 10ml. 'Kit' price = full case/box.", items:[
     ["C50","Test Cypionate","50mg/ml",10,80,"Testosterone ester"],
-    ["C250","Test Cypionate","250mg/ml",15,130,""],
-    ["E250","Test Enanthate","250mg/ml",15,130,"Testosterone ester"],
-    ["E300","Test Enanthate","300mg/ml",17,150,""],
+    ["C250","Test Cypionate","250mg/ml",13,120,""],
+    ["E250","Test Enanthate","250mg/ml",13,120,"Testosterone ester"],
+    ["E300","Test Enanthate","300mg/ml",15,140,""],
     ["P100","Test Propionate","100mg/ml",12,100,"Testosterone ester"],
     ["P200","Test Propionate","200mg/ml",null,null,"Price on request"],
     ["TY300","Test Undecanoate","300mg/ml",15,130,"Testosterone ester"],
@@ -933,8 +929,8 @@ var CATALOG = {
     ["H100","Tren Hex","100mg/ml",35,330,""],
     ["RM200","Trenmix (TrenA 75 / TrenE 125)","200mg/ml",30,280,""],
     ["3R225","TriTren (A/E/H 75 ea)","225mg/ml",40,380,""],
-    ["M100","Primobolan E","100mg/ml",50,480,"Methenolone"],
-    ["M200","Primobolan E","200mg/ml",85,800,""],
+    ["M100","Primobolan E","100mg/ml",45,430,"Methenolone"],
+    ["M200","Primobolan E","200mg/ml",80,780,""],
     ["N200","Deca (Nandrolone Dec)","200mg/ml",16,150,"Nandrolone ester"],
     ["N300","Deca (Nandrolone Dec)","300mg/ml",20,190,""],
     ["PN100","NPP","100mg/ml",15,130,"Nandrolone ester"],
@@ -944,7 +940,7 @@ var CATALOG = {
     ["S250","Sustanon","250mg/ml",15,130,"Test blend"],
     ["S400","Sustanon","400mg/ml",18,160,""],
     ["S450","Supertest","450mg/ml",20,180,"Test blend"],
-    ["T600","Testo 600 (Ace/PP/Cyp)","600mg/ml",25,230,""],
+    ["T600","Testo 600 (Ace/PP/Cyp)","600mg/ml",20,180,""],
     ["SO50","Stanozolol (oil)","50mg/ml",15,130,"Winstrol"],
     ["SO100","Stanozolol (oil)","100mg/ml",15,130,""],
     ["SW50","Stanozolol (water)","50mg/ml",null,null,"Price on request"],
@@ -953,8 +949,8 @@ var CATALOG = {
     ["U300","Equipoise (Boldenone Und)","300mg/ml",20,180,""],
     ["U600","Equipoise (Boldenone Und)","600mg/ml",30,250,""],
     ["BS250","Boldenone Cyp","250mg/ml",null,null,"Price on request"],
-    ["D100","Mast P (Drostanolone P)","100mg/ml",35,330,"Masteron"],
-    ["D200","Mast E (Drostanolone E)","200mg/ml",50,480,"Masteron"],
+    ["D100","Mast P (Drostanolone P)","100mg/ml",30,280,"Masteron"],
+    ["D200","Mast E (Drostanolone E)","200mg/ml",45,430,"Masteron"],
     ["RX225","Ripex (TrenA/MastP/TestP 75 ea)","225mg/ml",30,280,""],
     ["DO50","Dianabol (inj)","50mg/ml",18,160,""],
     ["OXO50","Anadrol (inj)","50mg/ml",18,160,""],
@@ -1000,27 +996,27 @@ var CATALOG = {
 };
 
 var RAWS = [
-  ["001","Anavar (Oxandrolone)",1500,6500,11800,""],
-  ["002","Proviron (Mesterolone)",950,4250,8000,""],
-  ["003","Trenbolone Acetate",800,3500,6500,""],
-  ["004","Trenbolone Enanthate",800,3500,6500,""],
-  ["005","Turinabol",980,4500,8500,""],
-  ["006","Testosterone Propionate",230,1000,1850,""],
-  ["007","Testosterone Enanthate",230,1000,1850,""],
-  ["008","Testosterone Cypionate",230,1000,1850,""],
-  ["010","Testosterone Decanoate",230,1000,1850,""],
-  ["011","Testosterone Phenylpropionate",230,1000,1850,""],
-  ["012","Stanozolol / Winstrol Micro",450,1000,3300,""],
-  ["014","Anadrol (Oxymetholone)",450,1000,3300,""],
-  ["015","Dianabol",450,1000,3300,""],
-  ["016","Primo E",3800,null,null,""],
-  ["019","Boldenone Undecylenate (EQ)",null,1350,2500,""],
-  ["020","Drostanolone Enanthate (Mast E)",1280,5000,9500,""],
-  ["021","Drostanolone Propionate (Mast P)",1280,5000,9500,""],
-  ["024","Sustanon",null,1350,2500,""],
+  ["001","Anavar (Oxandrolone)",1300,5500,10500,""],
+  ["002","Proviron (Mesterolone)",900,4000,7500,""],
+  ["003","Trenbolone Acetate",750,3250,6000,""],
+  ["004","Trenbolone Enanthate",750,3250,6000,""],
+  ["005","Turinabol",950,4250,8000,""],
+  ["006","Testosterone Propionate",200,800,1500,""],
+  ["007","Testosterone Enanthate",200,800,1500,""],
+  ["008","Testosterone Cypionate",200,800,1500,""],
+  ["010","Testosterone Decanoate",200,800,1500,""],
+  ["011","Testosterone Phenylpropionate",200,800,1500,""],
+  ["012","Stanozolol / Winstrol Micro",400,1500,2800,""],
+  ["014","Anadrol (Oxymetholone)",400,1500,2800,""],
+  ["015","Dianabol",400,1500,2800,""],
+  ["016","Primo E",3500,null,null,""],
+  ["019","Boldenone Undecylenate (EQ)",350,1250,2300,""],
+  ["020","Drostanolone Enanthate (Mast E)",1200,4500,8500,""],
+  ["021","Drostanolone Propionate (Mast P)",1200,4500,8500,""],
+  ["024","Sustanon",350,1250,2300,""],
   ["026","Tren Hex",1850,8500,16000,""],
-  ["027","Nandrolone Decanoate (Deca)",450,1750,3300,""],
-  ["028","Nandrolone Phenylpropionate (NPP)",450,1750,3300,""],
+  ["027","Nandrolone Decanoate (Deca)",400,1500,2800,""],
+  ["028","Nandrolone Phenylpropionate (NPP)",400,1500,2800,""],
   ["029","Testosterone Base Micro",null,1100,1950,""],
   ["031","Fluoxymesterone (Halo)",null,null,null,"10g=$650 / 100g=$5000"],
   ["034","Testosterone Isocaproate",400,1650,3000,""],
@@ -1201,6 +1197,7 @@ var DESC_KW = [
   ["cagrilintide","Cagrilintide: a long-acting amylin analog that curbs appetite and slows gastric emptying, often paired with semaglutide (CagriSema). Investigational."],
   ["mazdutide","Mazdutide: a GLP-1/glucagon dual agonist in development for weight and metabolic health."],
   ["survodutide","Survodutide: a GLP-1/glucagon dual agonist in trials for weight loss and fatty-liver disease (MASH)."],
+  ["eloralintide","Eloralintide: an investigational amylin-receptor agonist (a next-generation relative of cagrilintide) being studied for weight loss by reducing appetite and slowing gastric emptying. Very early human data."],
   ["liraglutide","Liraglutide (Saxenda/Victoza): an older, daily GLP-1 agonist — shorter-acting than semaglutide, same general appetite/glucose mechanism."],
   ["orforglipron","Orforglipron: an oral, non-peptide GLP-1 agonist in late-stage trials — the appeal is a pill instead of an injection."],
   ["tesofensine","Tesofensine: a triple monoamine-reuptake inhibitor studied for weight loss; stimulant-like, with appetite suppression and cardiovascular/mood cautions."],
@@ -1302,6 +1299,7 @@ var DESC_KW = [
   ["sr9009","Stenabolic (SR9009): a Rev-ErbA agonist researched for endurance and metabolism; poor oral absorption; unapproved."],
   ["aicar","AICAR: an AMPK activator researched for endurance and metabolism — expensive, with weak practical evidence."],
   ["slu-pp-332","SLU-PP-332: an experimental 'exercise-mimetic' (ERR agonist) studied in animals for metabolism; very early-stage."],
+  ["slu-pp-915","SLU-PP-915: a sibling of SLU-PP-332, an experimental 'exercise-mimetic' (ERR agonist) studied in animals for metabolism. Rodent-stage; no established human dosing or safety."],
   ["5-amino-1mq","5-amino-1MQ: an NNMT-enzyme inhibitor researched for metabolism and fat cells; early-stage."],
   ["bam15","BAM15: a mitochondrial uncoupler researched for fat loss — a gentler concept than DNP, but still early and not proven safe in humans."],
   ["nad","NAD+: a coenzyme central to cellular energy and repair, popular in longevity circles. Injectable NAD+ can cause flushing and discomfort if pushed too fast."],
@@ -1493,6 +1491,7 @@ var PROFILES = [
   ["semaglutide",{b:["Highly effective appetite suppression and weight loss","Strong glucose control; cardiovascular benefit shown in trials","Weekly dosing"],s:["Nausea, GI upset early on","Gallbladder/pancreatitis (rare)","Muscle loss without training/protein","'Ozempic face' from fat loss"],cls:"GLP-1 agonist (Ozempic/Wegovy)",eff:"The proven, widely-used benchmark GLP-1 \u2014 very effective, robust safety record. Tirzepatide edges it on raw weight loss.",p:[["Cagrilintide","CagriSema \u2014 a strong appetite-suppression pairing"],["Training + protein","to hold muscle"]]}],
   ["retatrutide",{b:["The largest weight-loss effect seen in the class so far (trial data)","Triple GLP-1/GIP/glucagon action hits metabolism from three angles","Also reduces liver fat"],s:["GI effects, potentially more pronounced given potency","Heart-rate increase noted in trials","Still investigational \u2014 long-term safety not established"],cls:"GLP-1 + GIP + glucagon triple agonist (trials)",eff:"The most powerful metabolic agent on the horizon; not yet approved, so it's the least characterised for long-term safety.",p:[["Cagrilintide","adds amylin \u2014 a fourth appetite pathway"],["Slow titration + protein/training","GI control and muscle retention"]]}],
   ["survodutide",{b:["GLP-1/glucagon dual agonist studied for weight loss AND fatty-liver disease (MASH)","Glucagon arm targets liver fat"],s:["GI effects","Investigational"],cls:"GLP-1 + glucagon dual agonist (trials)",eff:"Notable for its liver-disease data alongside weight loss. Investigational.",p:[["Protein/training","muscle preservation"]]}],
+  ["eloralintide",{b:["Amylin-receptor agonist \u2014 curbs appetite and slows gastric emptying","Studied for weight loss; a newer relative of cagrilintide"],s:["Nausea and GI effects likely, as with other amylin/GLP-1 drugs","Very early human data; long-term safety unknown"],cls:"Amylin receptor agonist (investigational)",eff:"Promising early weight-loss signal, but too new for confident conclusions. Not a stack-with-a-GLP-1 casual add-on.",p:[["Protein/training","muscle preservation"]]}],
   ["liraglutide",{b:["Established daily GLP-1 \u2014 appetite and glucose control","Long safety track record"],s:["Daily injection (vs weekly newer drugs)","GI effects","Less weight loss than semaglutide/tirzepatide"],cls:"GLP-1 agonist, daily (Saxenda/Victoza)",eff:"The older, daily GLP-1 \u2014 effective but outclassed on convenience and magnitude by weekly agents.",p:[["Training + protein","muscle retention"]]}],
   ["tesofensine",{b:["Strong appetite suppression via triple monoamine reuptake inhibition","Stimulant-like energy and fat loss"],s:["Raises heart rate and blood pressure","Insomnia, mood changes, dry mouth","Stimulant cautions"],cls:"Triple monoamine reuptake inhibitor (trials)",eff:"Potent appetite suppressant with a stimulant profile \u2014 effective but with cardiovascular/mood cautions.",p:[["Not typically stacked","stimulant load makes combinations riskier"]]}],
   ["clenbuterol",{b:["Stimulant fat-loss and mild muscle-preservation via beta-2 activation","Suppresses appetite; raises metabolic rate","Bronchodilator (breathing)"],s:["Tremor, jitters, cramps (taurine depletion), insomnia, sweating","Raises heart rate \u2014 real cardiac strain and possible heart enlargement with abuse","Tolerance builds quickly"],cls:"Beta-2 agonist stimulant",eff:"A real but modest fat-loss/preservation aid with a stimulant cost. Muscle-building claims are overstated in humans.",p:[["Taurine + potassium","to blunt the cramps clen causes"],["A cutting steroid stack","for muscle preservation in a deficit"]]}],
@@ -1512,6 +1511,7 @@ var PROFILES = [
   ["17a-methyl",{b:["Extremely strong, fast-acting oral androgen","Rapid strength and aggression"],s:["Severely liver-toxic","Harsh on lipids and mood","Very suppressive"],ratio:[null,null,"Methyl-1-testosterone: an intensely potent, harsh oral. Very high anabolic on paper, but toxicity dominates its profile."],eff:"Powerful but brutally toxic. Short, cautious use only.",p:[["Testosterone","base"],["Liver support","essential"]]}],
   ["stanozolol",{b:["Dry, hard look and lean strength, no water","Vascularity for a cutting phase"],s:["Harsh on HDL/cholesterol","Dry, achy joints","Hepatotoxic; suppressive; hair loss"],ratio:[320,30,"High anabolic, low androgenic \u2014 the lean, dry Winstrol profile."],eff:"Dry cutting strength at a cost to joints and lipids.",p:[["Testosterone","base"],["Tren/Masteron","dry stack"]]}],
   ["slu-pp-332",{b:["An 'exercise mimetic' \u2014 ERR agonist that mimics some endurance-exercise adaptations","Studied for fat loss and stamina in animals"],s:["Almost entirely animal data \u2014 no established human dosing or safety","Very experimental"],cls:"ERR agonist / exercise-mimetic (experimental)",eff:"Exciting concept (exercise adaptations without exercise) but rodent-stage; human results are speculative.",p:[["BAM15","paired as an experimental metabolic stack"]]}],
+  ["slu-pp-915",{b:["An 'exercise mimetic' \u2014 ERR agonist related to SLU-PP-332","Studied for fat loss and stamina in animals"],s:["Almost entirely animal data \u2014 no established human dosing or safety","Very experimental"],cls:"ERR agonist / exercise-mimetic (experimental)",eff:"Same concept as SLU-PP-332; rodent-stage, human results are speculative.",p:[]}],
   ["salbutamol",{b:["Milder, shorter-acting beta-2 agonist \u2014 similar fat-loss idea to clenbuterol, gentler","Bronchodilator"],s:["Tremor, raised heart rate, jitters","Shorter action means more frequent dosing"],cls:"Beta-2 agonist (short-acting)",eff:"A gentler clenbuterol alternative \u2014 less potent, shorter, somewhat easier to tolerate.",p:[["Taurine","cramp prevention"]]}],
   ["ipamorelin",{b:["The 'cleanest' GHRP \u2014 fires a GH pulse with minimal cortisol or prolactin","Little hunger spike vs other GHRPs","Good for sleep, recovery, gentle body-composition benefit"],s:["Mild water retention, tingling possible","Effects are gradual (weeks/months)"],cls:"Selective GHRP (ghrelin agonist)",eff:"The most side-effect-friendly GHRP \u2014 reliable, gentle GH pulses. Its clean profile is why it's the default GHRP.",p:[["CJC-1295 (no DAC)","the definitive GHRH+GHRP synergy stack"],["Recovery peptides","healing support"]]}],
   ["sermorelin",{b:["GHRH analog that stimulates the body's own GH \u2014 gentle and physiological","Historically used to test GH secretion","Better sleep and recovery"],s:["Short-acting; mild water retention/tingling","Gradual effects","Injection-site flushing"],cls:"GHRH analog (gentle)",eff:"An older, mild GHRH \u2014 safe and physiological but modest; newer GHRH+GHRP combos outperform it.",p:[["A GHRP (Ipamorelin/GHRP-2)","completes the GH pulse"]]}],
@@ -1706,6 +1706,7 @@ var AUG = [
   ["retatrutide",{chem:"Triple GLP-1 + GIP + glucagon receptor agonist \u2014 the glucagon arm adds extra metabolic/fat-loss drive",run:"Titrate slowly from a low weekly dose, stepping up ~every 4 wk. Among the most potent weight-loss compounds; the glucagon action can nudge heart rate and glucose, so slow escalation matters even more."}],
   ["mazdutide",{chem:"Dual GLP-1 + glucagon receptor agonist",run:"Titrate up gradually from a low weekly dose. Same principle as the others \u2014 the slow ramp is what keeps the GI effects manageable."}],
   ["survodutide",{chem:"Dual GLP-1 + glucagon receptor agonist",run:"Titrate slowly from a low starting dose. Studied heavily for liver (MASH) as well as weight; the glucagon arm adds fat-loss drive at the cost of a steeper GI ramp."}],
+  ["eloralintide",{chem:"Amylin receptor agonist \u2014 curbs appetite and slows gastric emptying",run:"Investigational. Would be titrated slowly like other amylin/GLP-1 drugs; no established dosing outside trials."}],
   ["liraglutide",{chem:"GLP-1 receptor agonist \u2014 the older, shorter-acting one (DAILY, not weekly)",run:"DAILY injection, unlike the weekly GLP-1s. Titrate from 0.6 mg/day, increasing ~0.6 mg weekly toward 3.0 mg as tolerated. More injections and generally milder results than semaglutide/tirzepatide."}],
   ["orforglipron",{chem:"Oral non-peptide (small-molecule) GLP-1 receptor agonist",run:"Unlike peptide GLP-1s, this is a true small molecule \u2014 orally active without the empty-stomach restriction of oral semaglutide. Still titrated up slowly to manage the same GI effects."}],
   // --- amylin ---
@@ -1718,6 +1719,7 @@ var AUG = [
   ["tesofensine",{chem:"Triple monoamine reuptake inhibitor (serotonin / noradrenaline / dopamine) \u2014 a centrally-acting appetite suppressant",run:"Not a GLP-1 \u2014 works in the brain like a stimulant appetite-suppressant. Can raise heart rate, blood pressure and cause insomnia/jitteriness; not to be combined with other stimulants or certain antidepressants. Start at the lowest dose."}],
   ["bam15",{chem:"Mitochondrial uncoupler \u2014 makes cells burn more energy as heat (a far milder, safer-margin cousin of DNP)",run:"Research-grade; anecdotal dosing only. Unlike DNP it has a wider safety margin in animal studies, but it is NOT proven safe in humans \u2014 treat cautiously."}],
   ["slu-pp-332",{chem:"Small-molecule ERR agonist \u2014 an 'exercise mimetic' that upregulates fat-burning metabolic pathways",run:"Research chemical, anecdotal dosing (no human data). Aims to mimic some effects of endurance exercise on metabolism; genuinely experimental."}],
+  ["slu-pp-915",{chem:"Small-molecule ERR agonist \u2014 an 'exercise mimetic' related to SLU-PP-332",run:"Research chemical, anecdotal dosing (no human data). Genuinely experimental."}],
   ["dnp",{chem:"2,4-Dinitrophenol \u2014 a potent mitochondrial uncoupler that forces the body to burn energy as heat",run:"HOLD \u2014 DNP has an extremely narrow margin between a fat-loss dose and a fatal one. It causes dangerous overheating (hyperthermia) that has killed users, and there is no antidote. Widely considered one of the most dangerous substances in this space."}],
   ["lipo-c",{chem:"Lipotropic injection blend (methionine, inositol, choline, carnitine, B-vitamins) \u2014 'MIC' fat-support",run:"Support adjunct, not a primary fat-loss drug. The lipotropic ingredients assist fat metabolism at the margin; effects are subtle and diet-dependent."}],
   // ============================================================
@@ -2155,11 +2157,13 @@ var DOSE_KW = [
   ["cagrilintide","0.3 mg/week \u2192 2.4 mg/week. Usually paired with semaglutide rather than run alone."],
   ["mazdutide","4\u20139 mg/week (per published trials). Weekly subQ."],
   ["survodutide","0.6 mg/week \u2192 up to 6 mg/week."],
+  ["eloralintide","No established dose \u2014 investigational; trial dosing was weekly, titrated slowly."],
   ["liraglutide","0.6 mg/day \u2192 3.0 mg/day. Daily subQ."],
   ["orforglipron","12\u201336 mg once daily, oral, titrated. No injection or refrigeration."],
   ["tesofensine","250\u2013500 mcg once daily in the morning, oral. Watch blood pressure; poor idea stacked on a GLP-1."],
   ["5-amino-1mq","50\u2013150 mg/day, oral."],
   ["slu-pp-332","500 mcg\u20131 mg/day, oral. Purely experimental \u2014 circulating doses are extrapolated from rodents, not established."],
+  ["slu-pp-915","No established human dose. Purely experimental \u2014 extrapolated from rodents."],
   ["bam15","50\u2013100 mg/day, oral. No human data; 'wider margin than DNP' is a low bar."],
   ["aod9604","300 mcg/day subQ, fasted. (Failed its human obesity trial \u2014 don't expect much.)"],
   ["hgh fragment","250\u2013500 mcg 1\u20132\u00d7/day, fasted, subQ."],
@@ -2379,7 +2383,7 @@ var PURPOSE_KW = [
   // weight loss & metabolic
   ["tirzepatide",["Weight Loss & Metabolic"]],["semaglutide",["Weight Loss & Metabolic"]],
   ["retatrutide",["Weight Loss & Metabolic"]],["cagrilintide",["Weight Loss & Metabolic"]],
-  ["mazdutide",["Weight Loss & Metabolic"]],["survodutide",["Weight Loss & Metabolic"]],
+  ["mazdutide",["Weight Loss & Metabolic"]],["survodutide",["Weight Loss & Metabolic"]],["eloralintide",["Weight Loss & Metabolic"]],["slu-pp-915",["Weight Loss & Metabolic"]],
   ["liraglutide",["Weight Loss & Metabolic"]],["orforglipron",["Weight Loss & Metabolic"]],
   ["tesofensine",["Weight Loss & Metabolic"]],["aod9604",["Weight Loss & Metabolic"]],
   ["hgh fragment",["Weight Loss & Metabolic"]],["5-amino-1mq",["Weight Loss & Metabolic","Longevity & Anti-Aging"]],
@@ -3289,7 +3293,7 @@ function rawRow(r){
 
 function setQty(code, n){ state.qty[code]=Math.max(0,n); saveState(); renderList(); renderBar(); }
 
-function buildManifest(L, useBulk){
+function buildManifest(L, useBulk, codeOnly){
   if (useBulk==null) useBulk = state.useBulk;
   var d=new Date().toISOString().slice(0,10);
   var sub=L.reduce(function(s,l){return s+l.total;},0);
@@ -3303,7 +3307,9 @@ function buildManifest(L, useBulk){
     rows.push("[ "+g.purpose.toUpperCase()+" ]");
     g.lines.forEach(function(l){
       var nm=(l.it[1]+" "+l.it[2]).trim();
-      rows.push(pad(l.code,7)+" x"+pad(String(l.n),3)+" "+nm+"  = $"+l.total+" USD");
+      rows.push(codeOnly
+        ? pad(l.code,7)+" x"+pad(String(l.n),3)+" = $"+l.total+" USD"
+        : pad(l.code,7)+" x"+pad(String(l.n),3)+" "+nm+"  = $"+l.total+" USD");
     });
   });
   var tail=["--------------------------------------",
@@ -3346,7 +3352,7 @@ function defaultOrderName(){
   return "Order "+(state.saved.length+1);
 }
 function savedOrderManifest(o){
-  return buildManifest(linesFrom(o.qty, o.useBulk), o.useBulk);
+  return buildManifest(linesFrom(o.qty, o.useBulk), o.useBulk, true);
 }
 function savedOrderTotal(o){
   var L=linesFrom(o.qty, o.useBulk);
@@ -3457,6 +3463,7 @@ function renderSheet(){
   }
   var sub=L.reduce(function(s,l){return s+l.total;},0), grand=sub+SHIPPING;
   var man=buildManifest(L);
+  var manCopy=buildManifest(L, undefined, true);   // code + price only, for the CSR
 
   // Editable line list — grouped by primary purpose (a header per group), items
   // alphabetical by name within each group. Same ordering as the manifest below.
@@ -3508,28 +3515,12 @@ function renderSheet(){
       '<div style="text-align:right"><span class="tLabel">Live BTC</span>'+
       '<span class="tBig" style="color:#f0a848;font-size:16px">'+(state.btcRate?fmtBtc(grand):"\u2026")+'</span></div></div>')+
     '<button class="copyBtn" id="copyBtn">\u2398 Copy USD order for CSR</button>'+
-    '<button class="waBtn" id="waBtn">\u27a4 Send order via WhatsApp</button>'+
     buildSaveArea()+
     '<div class="disclaimer">Copy block is USD only (what your CSR expects). Bulk \u201c10+\u201d tiers may apply per whole-order, not per line \u2014 confirm final pricing with the CSR.</div>'+
     savedHtml;
 
   document.getElementById("sheetClose").onclick=closeSheet;
-  document.getElementById("copyBtn").onclick=function(){ copyText(man, this); };
-  (function(){
-    var wa=document.getElementById("waBtn");
-    if(!wa) return;
-    // no items in cart -> nothing to send
-    if(!L.length){ wa.disabled=true; wa.title="Add items to your cart first"; }
-    wa.onclick=function(){
-      if(!L.length) return;
-      var num="12136466934"; // destination WhatsApp number (intl format, no +)
-      var intro="Hi! I'd like to place the following order:\n\n";
-      var outro="\n\nWhen you get a chance, could you let me know the total and the current Bitcoin address to send payment to? Thank you!";
-      var msg=intro+man+outro;
-      var url="https://wa.me/"+num+"?text="+encodeURIComponent(msg);
-      window.open(url, "_blank");
-    };
-  })();
+  document.getElementById("copyBtn").onclick=function(){ copyText(manCopy, this); };
   wireSaveArea();
 
   // Wire the editable line steppers + expand toggle.
